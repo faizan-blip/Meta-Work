@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { CartContext } from "../redux/Context/CartContext";
 import logo from './Images/8093572-removebg-preview.png'
-import { Typography } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 const Navbar = () => {
   const { cart } = useContext(CartContext);
 
@@ -13,20 +13,22 @@ const Navbar = () => {
         <NavLink to="/">
           <div className="ml-5" style={{display:"flex" , alignItems:"center"}}>
             <img src={logo} className="h-14" alt="Logo" />
-            <Typography sx={{fontSize:"19px" , fontWeight:"700"  , position:"relative" , right:"1.2em" , color:"#fff"}}>Shopify</Typography>
+            <Typography sx={{fontSize:"19px" , fontWeight:"700"  , position:"relative" , right:"1.2em" , color:"#121212"}}>Shopify</Typography>
           </div>
         </NavLink>
 
-        <div className="flex items-center font-medium text-slate-100 mr-5 space-x-6">
+        <div className="flex items-center font-medium text-black-100 mr-5 space-x-6">
           <NavLink to="/">
-            <p>Home</p>
+            <Typography sx={{fontWeight:"700" , fontSize:"18px"}}>Home</Typography>
           </NavLink>
 
           <NavLink to="/cart">
             <div className="relative">
-              <FaShoppingCart className="text-2xl" />
+              <IconButton>
+              <FaShoppingCart className="text-2xl"style={{color:"#000"}} />
+              </IconButton>
               {cart.length > 0 && (
-                <span className="absolute -top-1 -right-2 bg-green-600 text-xs w-5 h-5 flex justify-center items-center animate-bounce rounded-full text-white">
+                <span className="absolute -top-1 -right-2 bg-green-700 text-xs w-5 h-5 flex justify-center items-center animate-bounce rounded-full text-white">
                   {cart.length}
                 </span>
               )}

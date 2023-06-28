@@ -1,9 +1,10 @@
 import { toast } from "react-hot-toast";
 import { useContext } from "react";
 import { CartContext } from "../redux/Context/CartContext";
-
+import { Box , Button , Typography , IconButton  , Rating  } from "@mui/material";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 const Product = ({ post }) => {
-  const { cart, addCartItem, removeCartItem } = useContext(CartContext);
+  const { addCartItem, removeCartItem } = useContext(CartContext);
 
   const addToCart = () => {
     addCartItem(post);
@@ -16,45 +17,29 @@ const Product = ({ post }) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-between hover:scale-110 transition duration-300 ease-in gap-3 p-4 mt-10 ml-5 rounded-xl outline">
-      <div>
-        <p className="text-700 font-semibold text-lg text-left truncate w-40 mt-1" style={{color:"#fff"}}>{post.title}</p>
-      </div>
-      <div>
-        <p className="w-40 font-normal text-[10px] text-left" style={{color:"rgba(255, 255, 255, 0.7)"}}>{post.description.split(" ").slice(0, 10).join(" ") + "..."}</p>
-      </div>
-      <div className="h-[180px]">
-        <img src={post.image} className="h-full w-full" alt="Product"  />
-      </div>
-
-      <div className="flex justify-between gap-12 items-center w-full mt-5">
-        <div>
-          <p className="text-green-600 font-semibold">${post.price}</p>
-        </div>
-
-        {cart.some((p) => p.id === post.id) ? (
-          <button
-            className="text--700 border-2 border-white-700 rounded-full font-semibold 
-          text-[12px] p-1 px-3 uppercase 
-          hover:bg-gray-700
-          hover:text-white transition duration-300 ease-in"
-            onClick={removeFromCart}
-          >
-            Remove Item
-          </button>
-        ) : (
-          <button
-            className="text--700 border-2 border-white-700 rounded-full font-semibold 
-          text-[12px] p-1 px-3 uppercase 
-          hover:bg-gray-700
-          hover:text-white transition duration-300 ease-in"
-            onClick={addToCart}
-          >
-            Add to Cart
-          </button>
-        )}
-      </div>
-    </div>
+        <>
+        
+            <Box key={post.id} sx={{width:"20em" , height:"auto", minHeight:"430px",display:"flex" , flexDirection:"column", position:"relative"}}>
+                  <Box sx={{ minHeight:"250px" , minWidth:"250px" , display:"flex" , justifyContent:"center" , background:"#f6f6f6" , borderRadius:"17px" , alignItems:"center", boxShadow:" inset 20px 20px 39px #d1d1d1, inset -20px -20px 39px #ffffff"}}>
+                    <img src={post.image} alt="" style={{width:"200px" , height:"200px" , mixBlendMode:"multiply"}} />
+                  </Box>
+                  <IconButton sx={{position:"absolute" , transform:"translate(-50% , -50%)" , right:"0" , top:"7%"}}>
+                      <FavoriteBorderIcon/>
+                  </IconButton>
+                   <Box sx={{display:"flex" , flexDirection:"column" , minHeight:"7.5em" , padding:"0.5em 0"}}>
+                   <Typography sx={{fontWeight:"700" , fontSize:"14px" , padding:"0 1em"}}>{post.title} </Typography>
+                   <Box sx={{display:"flex" , justifyContent:"space-between" , alignItems:"center" , width:"100%" , padding:"0 1em"}}>
+                      <Typography sx={{fontWeight:"500" , fontSize:"14px"}}>{post.category}</Typography>
+                      <Rating  name="half-rating-read" defaultValue={2.5} precision={0.5} readOnly />
+                      </Box>
+                      <Typography sx={{fontWeight:"900" , color:"#121212" , padding:"0 1em"}}>&euro; {post.price}</Typography>
+                      </Box>
+                      <Box sx={{display:"flex",gap:"0.5em" , justifyContent:"center" , alignItems:"center" , width:"100%" }}>
+                         <Button variant="contained" onClick={addToCart} sx={{background:"#023c29 !important" , color:"#fff" , borderRadius:"15px" , textTransform:"none" , fontWeight:"700"}}>Add to Cart</Button>
+                         <Button variant="outlined" onClick={removeFromCart} sx={{borderColor:"#023c29 !important" , color:"#121212" , borderRadius:"15px" , textTransform:"none" , fontWeight:"700"}}>Remove Item</Button>
+                      </Box>
+            </Box>
+        </>
   );
 };
 

@@ -4,7 +4,7 @@ import { DotLoader } from 'react-spinners'
 const Spinner = () => {
   return (
     <Box sx={{display:"flex" , justifyContent:"center" , alignItems:"center" , height:"100vh"}}>
-      <DotLoader color="#fff" />
+      <DotLoader color="#121212" />
     </Box>
   )
 }

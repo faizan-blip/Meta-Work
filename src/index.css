@@ -11,11 +11,11 @@
 body {
   font-family: "Poppins", sans-serif;
   min-height: 100vh;
-  background-color:rgba(0, 0, 0, 0.87);
+  background-color:#fff;
 }
 
 .navbar-container.dark-bg {
-  background-color: #121212;
+  background-color:#f6f6f6
 }
 ::-webkit-scrollbar{
 	width: 3px;
