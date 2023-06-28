@@ -1,19 +1,17 @@
 import { FaShoppingCart } from "react-icons/fa";
-import { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { CartContext } from "../redux/Context/CartContext";
+import {  useCartContext } from "../redux/Context/CartContext";
 import logo from './Images/8093572-removebg-preview.png'
 import { IconButton, Typography } from "@mui/material";
 const Navbar = () => {
-  const { cart } = useContext(CartContext);
-
+  const { cart } = useCartContext()
   return (
     <div className="navbar-container dark-bg">
       <nav className="flex justify-between items-center h-20 max-w-6xl mx-auto">
         <NavLink to="/">
           <div className="ml-5" style={{display:"flex" , alignItems:"center"}}>
             <img src={logo} className="h-14" alt="Logo" />
-            <Typography sx={{fontSize:"19px" , fontWeight:"700"  , position:"relative" , right:"1.2em" , color:"#121212"}}>Shopify</Typography>
+            <Typography sx={{fontSize:"19px" , fontWeight:"700"  , position:"relative" , right:"1.2em" , color:"#121212"}}>MetaWork</Typography>
           </div>
         </NavLink>
 

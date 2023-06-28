@@ -1,21 +1,17 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { CartContext } from "../redux/Context/CartContext";
+import {  useCartContext } from "../redux/Context/CartContext";
 import { Paper, Typography, Button , Box ,Rating, Fab} from "@mui/material";
 import carting from '../components/Images/pngwing.com.png'
 import DeleteIcon from '@mui/icons-material/Delete';
 import { toast } from "react-hot-toast";
 const Cart = () => {
-  const { cart } = useContext(CartContext);
   console.log("Printing Cart");
-  console.log(cart);
   const [totalAmount, setTotalAmount] = useState(0);
-
+  const { removeCartItem , cart } = useCartContext();
   useEffect(() => {
     setTotalAmount(cart.reduce((acc, curr) => acc + curr.price, 0));
   }, [cart]);
-
-  const { removeCartItem } = useContext(CartContext);
 
    const removeFromCart = (item) => {
     removeCartItem(item.id);
@@ -47,9 +43,9 @@ const Cart = () => {
               </Box>
               </Box>
          ))}
-         <Box sx={{display:"flex" , alignSelf:{sm:"flex-end" , xs:"center"} , alignItems:"center" , gap:"1.2em"}}>
+         <Box sx={{display:"flex" , alignSelf:{sm:"flex-end" , xs:"center"} , alignItems:"center" , gap:{sm:"1.2em" , xs:"0em"}}}>
           <Typography sx={{fontWeight:"700" , fontSize:"22px"}}>Total Amount: ${totalAmount}</Typography>
-             <Button  variant="contained" sx={{background:"#023c29 !important" , color:"#fff" , borderRadius:"15px" , textTransform:"none" , fontWeight:"700" , fontSize:{sm:"18px" , xs:"15px"}}}>Checkout Now</Button>
+             <Button  variant="contained" sx={{background:"#023c29 !important" , color:"#fff" , borderRadius:"15px" , textTransform:"none" , fontWeight:"700" , fontSize:{sm:"18px" , xs:"15px"} , width:{sm:"auto"  , xs:"15em"}}}>Checkout Now</Button>
          </Box>
          </Box>
           </>

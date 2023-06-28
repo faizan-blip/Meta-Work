@@ -1,10 +1,9 @@
 import { toast } from "react-hot-toast";
-import { useContext } from "react";
-import { CartContext } from "../redux/Context/CartContext";
+import {  useCartContext } from "../redux/Context/CartContext";
 import { Box , Button , Typography , IconButton  , Rating  } from "@mui/material";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 const Product = ({ post }) => {
-  const { addCartItem, removeCartItem } = useContext(CartContext);
+  const { addCartItem, removeCartItem } = useCartContext()
 
   const addToCart = () => {
     addCartItem(post);
